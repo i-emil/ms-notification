@@ -1,0 +1,48 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.troojer'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '15'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.1.RELEASE'
+
+    compile group: 'net.javacrumbs.shedlock', name: 'shedlock-provider-jdbc-template', version: '4.0.2'
+    compile group: 'net.javacrumbs.shedlock', name: 'shedlock-spring', version: '4.0.2'
+
+    implementation('org.liquibase:liquibase-core')
+    runtimeOnly('org.postgresql:postgresql')
+
+    annotationProcessor('org.projectlombok:lombok:1.18.12')
+    compileOnly('org.projectlombok:lombok:1.18.12')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    compile group: 'com.mailjet', name: 'mailjet-client', version: '4.2.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    compile('ch.qos.logback:logback-core:1.2.3')
+    compile('ch.qos.logback:logback-classic:1.2.3')
+}
+
+test {
+    useJUnitPlatform()
+}

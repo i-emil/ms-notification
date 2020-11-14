@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: CreateSmsTable
+      author: emilr
+      changes:
+        - createTable:
+            tableName: sms
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: region
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: message_text
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: varchar(255)
+              - column:
+                  name: sending_date
+                  type: timestamp
+              - column:
+                  name: status
+                  type: varchar(100)
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp

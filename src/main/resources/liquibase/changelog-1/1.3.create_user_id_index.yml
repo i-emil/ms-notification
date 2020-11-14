@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: CreateIndexToEmailMessage
+      author: emilr
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: user_id
+            indexName: idx_email_message_user_id
+            tableName: email_message
+            unique: false

@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: CreateEmailMessageSequence
+      author: emilr
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: email_message_seq
