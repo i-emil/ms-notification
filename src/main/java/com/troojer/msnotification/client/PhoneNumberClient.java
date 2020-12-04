@@ -21,7 +21,7 @@ public class PhoneNumberClient {
         this.restTemplate = restTemplate;
     }
 
-    public String gerPhoneRegion(String number) throws ClientException {
+    public String getPhoneRegion(String number) throws ClientException {
         try {
             return restTemplate.getForEntity(url + "localization/phones/" + "region/" + number, String.class).getBody();
         } catch (RestClientResponseException exc) {

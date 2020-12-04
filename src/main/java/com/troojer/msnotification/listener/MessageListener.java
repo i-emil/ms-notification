@@ -3,7 +3,9 @@ package com.troojer.msnotification.listener;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.troojer.msnotification.model.EmailMessageDto;
+import com.troojer.msnotification.model.SmsDto;
 import com.troojer.msnotification.service.EmailMessageService;
+import com.troojer.msnotification.service.SmsService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +13,12 @@ import org.springframework.stereotype.Component;
 public class MessageListener {
 
     private final EmailMessageService emailMessageService;
+    private final SmsService smsService;
     private final ObjectMapper objectMapper;
 
-    public MessageListener(EmailMessageService emailMessageService, ObjectMapper objectMapper) {
+    public MessageListener(EmailMessageService emailMessageService, SmsService smsService, ObjectMapper objectMapper) {
         this.emailMessageService = emailMessageService;
+        this.smsService = smsService;
         this.objectMapper = objectMapper;
     }
 
@@ -24,10 +28,16 @@ public class MessageListener {
         emailMessageService.addMessage(message);
     }
 
-    @RabbitListener(queues = "smsQueue")
+    @RabbitListener(queues = "smsMessageQueue")
     public void listenSmsQueue(String messageStr) throws JsonProcessingException {
-        EmailMessageDto message = objectMapper.readValue(messageStr, EmailMessageDto.class);
-        emailMessageService.addMessage(message);
+        SmsDto message = objectMapper.readValue(messageStr, SmsDto.class);
+        smsService.addMessage(message);
+    }
+
+    @RabbitListener(queues = "innerNotificationQueue")
+    public void listenInnerNotificationQueue(String messageStr) throws JsonProcessingException {
+        SmsDto message = objectMapper.readValue(messageStr, SmsDto.class);
+        smsService.addMessage(message);
     }
 
 }

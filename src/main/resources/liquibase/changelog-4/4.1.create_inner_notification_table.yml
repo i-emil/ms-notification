@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: CreateInnerNotificationTable
+      author: emilr
+      changes:
+        - createTable:
+            tableName: inner_notification
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: varchar(255)
+              - column:
+                  name: sending_date
+                  type: timestamp
+              - column:
+                  name: status
+                  type: varchar(100)
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp

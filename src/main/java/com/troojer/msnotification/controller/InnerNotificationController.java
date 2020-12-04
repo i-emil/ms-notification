@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("messages")
-public class MessageController {
+@RequestMapping("notifications")
+public class InnerNotificationController {
     private final EmailMessageService emailMessageService;
     private final SmsService smsService;
 
-    public MessageController(EmailMessageService emailMessageService, SmsService smsService) {
+    public InnerNotificationController(EmailMessageService emailMessageService, SmsService smsService) {
         this.emailMessageService = emailMessageService;
         this.smsService = smsService;
     }

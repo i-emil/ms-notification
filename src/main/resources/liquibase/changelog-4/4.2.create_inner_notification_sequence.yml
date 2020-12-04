@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: CreateInnerNotificationSequence
+      author: emilr
+      changes:
+        - createSequence:
+            incrementBy: 50
+            sequenceName: inner_notification_seq
