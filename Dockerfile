@@ -1,4 +1,4 @@
-FROM gradle:6.4.1-jre14 as build
+FROM gradle:6.7.1-jre15 as build
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
