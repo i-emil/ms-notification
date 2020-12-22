@@ -10,6 +10,7 @@ import com.troojer.msnotification.model.exception.NotFoundException;
 import com.troojer.msnotification.service.InnerNotificationService;
 import com.troojer.msnotification.util.AccessCheckerUtil;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -36,8 +37,8 @@ public class InnerNotificationServiceImpl implements InnerNotificationService {
     }
 
     @Override
-    public List<InnerNotificationDto> getNotifications() {
-        return innerNotificationMapper.entitiesToDtos(innerNotificationRepository.findAllByUserId(accessChecker.getUserId()));
+    public List<InnerNotificationDto> getNotifications(Pageable pageable) {
+        return innerNotificationMapper.entitiesToDtos(innerNotificationRepository.findAllByUserId(accessChecker.getUserId(), pageable));
     }
 
     @Override

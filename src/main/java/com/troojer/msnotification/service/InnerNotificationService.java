@@ -5,6 +5,7 @@ import com.troojer.msnotification.model.InnerNotificationDto;
 import com.troojer.msnotification.model.InnerNotificationStatus;
 import com.troojer.msnotification.model.SendingStatus;
 import com.troojer.msnotification.model.SmsDto;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
 public interface InnerNotificationService {
     void addNotification(InnerNotificationDto innerNotificationDto);
 
-    List<InnerNotificationDto> getNotifications();
+    List<InnerNotificationDto> getNotifications(Pageable pageable);
 
     void setNotificationStatus(Long id, InnerNotificationStatus status);
 }

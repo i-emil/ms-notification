@@ -22,7 +22,8 @@
         </encoder>
     </appender>
 
-    <root level="debug">
+    <springProperty scope="context" name="level" source="logging.my-level"/>
+    <root level="${level}">
         <appender-ref ref="ROLLINGFILE"/>
         <appender-ref ref="CONSOLE"/>
     </root>

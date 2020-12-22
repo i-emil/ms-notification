@@ -12,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 
@@ -27,15 +28,20 @@ public class InnerNotificationDto {
     @JsonProperty(access = READ_ONLY)
     private Long id;
 
+    @NotBlank
     private String title;
 
+    @NotBlank
     private String description;
 
+    @Pattern(regexp = "INFO|COUPLE_REQUEST")
     private InnerNotificationType type;
 
+    @NotBlank
     private String userId;
 
-    private LocalDateTime sendingDate;
+    @DateParameters(param = "sendingDate")
+    private String sendingDate;
 
     @JsonProperty(access = READ_ONLY)
     private InnerNotificationStatus status;

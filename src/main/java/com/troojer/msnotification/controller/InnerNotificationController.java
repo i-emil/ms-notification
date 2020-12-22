@@ -1,34 +1,33 @@
 package com.troojer.msnotification.controller;
 
-import com.troojer.msnotification.model.EmailMessageDto;
-import com.troojer.msnotification.model.SmsDto;
-import com.troojer.msnotification.service.EmailMessageService;
-import com.troojer.msnotification.service.SmsService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.troojer.msnotification.model.InnerNotificationDto;
+import com.troojer.msnotification.model.InnerNotificationStatus;
+import com.troojer.msnotification.service.InnerNotificationService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.List;
+
+import static com.troojer.msnotification.model.InnerNotificationStatus.READ;
 
 @RestController
 @RequestMapping("notifications")
 public class InnerNotificationController {
-    private final EmailMessageService emailMessageService;
-    private final SmsService smsService;
 
-    public InnerNotificationController(EmailMessageService emailMessageService, SmsService smsService) {
-        this.emailMessageService = emailMessageService;
-        this.smsService = smsService;
+    private final InnerNotificationService innerNotificationService;
+
+    public InnerNotificationController(InnerNotificationService innerNotificationService) {
+        this.innerNotificationService = innerNotificationService;
     }
 
-    @PostMapping("mail")
-    public void addMailMessages(@RequestBody @Valid EmailMessageDto message) {
-        emailMessageService.addMessage(message);
+    @GetMapping
+    public List<InnerNotificationDto> getUserNotifications(Pageable pageable) {
+        return innerNotificationService.getNotifications(pageable);
     }
 
-    @PostMapping("sms")
-    public void addSmsMessages(@RequestBody @Valid SmsDto message) {
-        smsService.addMessage(message);
+    @PutMapping("read/{notificationId}")
+    public void readNotification(@PathVariable Long notificationId) {
+        innerNotificationService.setNotificationStatus(notificationId, READ);
     }
+
 }

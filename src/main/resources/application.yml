@@ -20,3 +20,5 @@ server:
 client:
   localization:
     url: http://ms-localization:8080/
+logging:
+  my-level: INFO

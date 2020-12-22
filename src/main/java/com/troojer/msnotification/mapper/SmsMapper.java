@@ -15,7 +15,6 @@ public class SmsMapper {
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-
     public SmsEntity dtoToEntity(SmsDto dto) {
         return SmsEntity.builder()
                 .userId(dto.getUserId())
