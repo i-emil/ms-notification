@@ -2,7 +2,7 @@ spring:
   rabbitmq:
     host: rabbitmq.rabbitmq.svc.cluster.local
     port: 5672
-    username: admin
+    username: ${rabbit_username}
     password: P@ssw0rD
   datasource:
     url: jdbc:postgresql://postgres-postgresql.postgres.svc.cluster.local:5432/ms_notification
