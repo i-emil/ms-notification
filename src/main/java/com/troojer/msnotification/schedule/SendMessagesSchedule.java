@@ -47,9 +47,10 @@ public class SendMessagesSchedule {
     @Scheduled(fixedDelay = 60000L)
     @SchedulerLock(name = "sendSms")
     public void sendSms() {
-        List<SmsDto> messages = smsService.getMessages();
-        Map<Long, SendingStatus> messageMap = softlineSmsSenderClient.sendAllSms(messages);
-        smsService.setSendStatus(messageMap);
-        logger.info("sendSms(): {}", messageMap);
+        //todo activate in prod
+//        List<SmsDto> messages = smsService.getMessages();
+//        Map<Long, SendingStatus> messageMap = softlineSmsSenderClient.sendAllSms(messages);
+//        smsService.setSendStatus(messageMap);
+//        logger.info("sendSms(): {}", messageMap);
     }
 }

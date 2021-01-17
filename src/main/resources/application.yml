@@ -6,8 +6,8 @@ spring:
     password: P@ssw0rD
   datasource:
     url: jdbc:postgresql://postgres-postgresql.postgres.svc.cluster.local:5432/ms_notification
-    username: postgres
-    password: P@ssw0rD
+    username: ms-notification
+    password: 8tA&@3E7WWXu
   liquibase:
     enabled: true
     change-log: classpath:liquibase/changelog-master.yml
