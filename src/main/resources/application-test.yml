@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://5.134.48.221:55557/ms_notification
+    username: postgres
+    password: P@ssw0rD
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+client:
+  localization:
+    url: http://localhost:8084/
