@@ -1,13 +1,13 @@
 spring:
   rabbitmq:
-    host: rabbitmq.rabbitmq.svc.cluster.local
+    host: ${RABBITMQ_URL}
     port: 5672
-    username: admin
-    password: P@ssw0rD
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_USER_PASSWORD}
   datasource:
-    url: jdbc:postgresql://postgres-postgresql.postgres.svc.cluster.local:5432/ms_notification
-    username: ms-notification
-    password: 8tA&@3E7WWXu
+    url: jdbc:postgresql://${DATABASE_URL}/ms_notification
+    username: ${MS_NOTIFICATION_USER}
+    password: ${MS_NOTIFICATION_PASSWORD}
   liquibase:
     enabled: true
     change-log: classpath:liquibase/changelog-master.yml
