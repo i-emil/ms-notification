@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface SmsRepository extends JpaRepository<SmsEntity, Long> {
 
-    @Query(value = "SELECT se FROM SmsEntity se WHERE se.status='PENDING' AND (se.sendingDate <= :before OR se.sendingDate is NULL)")
-    List<SmsEntity> getMessagesToSend(LocalDateTime before);
-
+    @Query(value = "SELECT se FROM SmsEntity se WHERE se.createdAt >= :point AND se.status='PENDING'")
+    List<SmsEntity> getMessagesToSend(LocalDateTime point);
 }

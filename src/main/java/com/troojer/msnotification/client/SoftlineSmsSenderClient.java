@@ -40,7 +40,7 @@ public class SoftlineSmsSenderClient {
         return messagesStatus;
     }
 
-    private Pair<Long, SendingStatus> sendSms(SmsDto sms) {
+    public Pair<Long, SendingStatus> sendSms(SmsDto sms) {
         String url = "http://gw.soft-line.az/sendsms?user=" + username + "&password=" + apiKey + "&gsm=" + sms.getPhoneNumber() + "&from=" + senderName + "&text=" + sms.getMessageText();
         SendingStatus sendingStatus = PENDING;
         try {
@@ -50,12 +50,13 @@ public class SoftlineSmsSenderClient {
             String responseCode = response != null ? response.substring(6, response.indexOf('&')) : "200";
             sendingStatus = switch (responseCode) {
                 case "100" -> SEND;
-                case "90", "25", "20", "10" -> ERROR;
+                case "90", "25", "20", "10", "40" -> ERROR;
                 default -> PENDING;
             };
         } catch (Exception e) {
             logger.warn("sendSms(), sms: {}", sms);
         }
-        return Pair.of(sms.getId(), sendingStatus);
+        long id = sms.getId() == null ? -1L : sms.getId();
+        return Pair.of(id, sendingStatus);
     }
 }

@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface SmsService {
-    void addMessage(SmsDto message);
+    void addAndSendMessage(SmsDto message);
 
-    List<SmsDto> getMessages();
+    List<SmsDto> getMessagesToSend();
 
-    void setSendStatus(Map<Long, SendingStatus> messagesStatus);
+    void setSendingStatus(Map<Long, SendingStatus> messagesStatus);
 }

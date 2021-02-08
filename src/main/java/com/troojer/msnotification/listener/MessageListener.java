@@ -31,13 +31,13 @@ public class MessageListener {
     @RabbitListener(queues = "smsMessageQueue")
     public void listenSmsQueue(String messageStr) throws JsonProcessingException {
         SmsDto message = objectMapper.readValue(messageStr, SmsDto.class);
-        smsService.addMessage(message);
+        smsService.addAndSendMessage(message);
     }
 
     @RabbitListener(queues = "innerNotificationQueue")
     public void listenInnerNotificationQueue(String messageStr) throws JsonProcessingException {
         SmsDto message = objectMapper.readValue(messageStr, SmsDto.class);
-        smsService.addMessage(message);
+        smsService.addAndSendMessage(message);
     }
 
 }
