@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static com.troojer.msnotification.model.SendingStatus.PENDING;
@@ -34,7 +35,9 @@ public class InnerNotificationDto {
     @NotBlank
     private String description;
 
-    @Pattern(regexp = "INFO|COUPLE_REQUEST")
+    private Map<String, String> params;
+
+    @Pattern(regexp = "INFO|EVENT_CHANGE|EVENT_RECOMMEND")
     private InnerNotificationType type;
 
     @NotBlank

@@ -35,7 +35,7 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public void addAndSendMessage(SmsDto message) {
         var e = smsMapper.dtoToEntity(message);
-        e.setStatus(softlineSmsSenderClient.sendSms(message).getSecond());
+//        e.setStatus(softlineSmsSenderClient.sendSms(message).getSecond());
         smsRepository.save(e);
     }
 

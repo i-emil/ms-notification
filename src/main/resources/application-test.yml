@@ -5,7 +5,7 @@ spring:
     password: guest
     port: 5672
   datasource:
-    url: jdbc:postgresql://5.134.48.221:55557/ms_notification
+    url: jdbc:postgresql://192.168.1.100:30058/ms_notification
     username: postgres
     password: P@ssw0rD
   jpa:

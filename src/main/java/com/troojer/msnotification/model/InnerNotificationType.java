@@ -1,5 +1,5 @@
 package com.troojer.msnotification.model;
 
 public enum InnerNotificationType {
-    INFO, COUPLE_REQUEST
+    INFO, EVENT_CHANGE, EVENT_RECOMMEND
 }
