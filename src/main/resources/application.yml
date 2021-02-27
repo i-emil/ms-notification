@@ -2,8 +2,8 @@ spring:
   rabbitmq:
     host: ${RABBITMQ_URL}
     port: 5672
-    username: ${RABBITMQ_USER}
-    password: ${RABBITMQ_USER_PASSWORD}
+    username: troojerrabbit
+    password: rRTBxOB2QH8R0XvJtdSKcI95K
   datasource:
     url: jdbc:postgresql://${DATABASE_URL}/ms_notification
     username: ${MS_NOTIFICATION_USER}
