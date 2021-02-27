@@ -26,19 +26,19 @@ public class MessageListener {
         this.objectMapper = objectMapper;
     }
 
-    @RabbitListener(queues = "emailMessageQueue")
+    @RabbitListener(queues = "#{rabbitMqConfiguration.getEmailQueue()}")
     public void listenEmailQueue(String messageStr) throws JsonProcessingException {
         EmailMessageDto message = objectMapper.readValue(messageStr, EmailMessageDto.class);
         emailMessageService.addMessage(message);
     }
 
-    @RabbitListener(queues = "smsMessageQueue")
+    @RabbitListener(queues = "#{rabbitMqConfiguration.getSmsQueue()}")
     public void listenSmsQueue(String messageStr) throws JsonProcessingException {
         SmsDto message = objectMapper.readValue(messageStr, SmsDto.class);
         smsService.addAndSendMessage(message);
     }
 
-    @RabbitListener(queues = "innerNotificationQueue")
+    @RabbitListener(queues = "#{rabbitMqConfiguration.getNotificationQueue()}")
     public void listenInnerNotificationQueue(String messageStr) throws JsonProcessingException {
         InnerNotificationDto message = objectMapper.readValue(messageStr, InnerNotificationDto.class);
         innerNotificationService.addNotification(message);
