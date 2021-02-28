@@ -16,6 +16,7 @@ import java.util.Map;
 
 import static com.troojer.msnotification.model.InnerNotificationStatus.NEW;
 import static com.troojer.msnotification.model.SendingStatus.PENDING;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Table(name = "inner_notification")
@@ -37,7 +38,7 @@ public class InnerNotificationEntity {
     @Enumerated(EnumType.STRING)
     private InnerNotificationType type;
 
-    @ElementCollection
+    @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "inner_notification_map",
             joinColumns = {@JoinColumn(name = "inner_notification_id", referencedColumnName = "id")})
     @MapKeyColumn(name = "key")

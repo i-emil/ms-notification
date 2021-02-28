@@ -14,11 +14,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.troojer.msnotification.model.InnerNotificationStatus.NEW;
+import static com.troojer.msnotification.model.InnerNotificationStatus.SENT;
 
 @Component
 public class InnerNotificationServiceImpl implements InnerNotificationService {
 
-    private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = (Logger)LoggerFactory.getLogger(this.getClass());
 
     private final InnerNotificationRepository innerNotificationRepository;
     private final InnerNotificationMapper innerNotificationMapper;
@@ -38,14 +42,18 @@ public class InnerNotificationServiceImpl implements InnerNotificationService {
 
     @Override
     public List<InnerNotificationDto> getNotifications(Pageable pageable) {
-        return innerNotificationMapper.entitiesToDtos(innerNotificationRepository.findAllByUserId(accessChecker.getUserId(), pageable));
+        List<InnerNotificationEntity> notifications = innerNotificationRepository.findAllByUserId(accessChecker.getUserId(), pageable);
+        List<InnerNotificationEntity> newNotifications = notifications.stream().filter(x -> x.getStatus() == NEW).collect(Collectors.toList());
+        newNotifications.forEach(x -> x.setStatus(SENT));
+        innerNotificationRepository.saveAll(newNotifications);
+        return innerNotificationMapper.entitiesToDtos(notifications);
     }
 
     @Override
     public void setNotificationStatus(Long id, InnerNotificationStatus status) {
         InnerNotificationEntity innerNotification = innerNotificationRepository.findById(id).orElseThrow(() -> {
             logger.warn("setNotificationStatus(); notfound; id: {}", id);
-            return new NotFoundException("");
+            return new NotFoundException("notification not exist");
         });
         innerNotification.setStatus(status);
         innerNotificationRepository.save(innerNotification);
