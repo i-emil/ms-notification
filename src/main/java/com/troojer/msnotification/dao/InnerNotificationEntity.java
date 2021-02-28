@@ -12,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 import static com.troojer.msnotification.model.InnerNotificationStatus.NEW;
 import static com.troojer.msnotification.model.SendingStatus.PENDING;
@@ -35,6 +36,13 @@ public class InnerNotificationEntity {
 
     @Enumerated(EnumType.STRING)
     private InnerNotificationType type;
+
+    @ElementCollection
+    @CollectionTable(name = "inner_notification_map",
+            joinColumns = {@JoinColumn(name = "inner_notification_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "key")
+    @Column(name = "value")
+    private Map<String, String> params;
 
     @Column(name = "user_id")
     private String userId;

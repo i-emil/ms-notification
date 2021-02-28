@@ -21,6 +21,7 @@ public class InnerNotificationMapper {
                 .description(dto.getDescription())
                 .type(dto.getType())
                 .userId(dto.getUserId())
+                .params(dto.getParams())
                 .sendingDate((dto.getSendingDate() != null) ? LocalDateTime.parse(dto.getSendingDate(), formatter) : null)
                 .build();
     }
@@ -33,6 +34,7 @@ public class InnerNotificationMapper {
                 .description(entity.getDescription())
                 .type(entity.getType())
                 .userId(entity.getUserId())
+                .params(entity.getParams())
                 .sendingDate((entity.getSendingDate() != null) ? entity.getSendingDate().format(formatter) : null)
                 .build();
     }
