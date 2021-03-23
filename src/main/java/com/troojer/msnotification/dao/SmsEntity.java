@@ -1,6 +1,6 @@
 package com.troojer.msnotification.dao;
 
-import com.troojer.msnotification.model.SendingStatus;
+import com.troojer.msnotification.model.enm.SendingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-import static com.troojer.msnotification.model.SendingStatus.PENDING;
+import static com.troojer.msnotification.model.enm.SendingStatus.PENDING;
 
 @Entity
 @Table(name = "sms")

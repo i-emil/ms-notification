@@ -5,7 +5,7 @@ import com.troojer.msnotification.dao.EmailMessageEntity;
 import com.troojer.msnotification.dao.respository.EmailMessageRepository;
 import com.troojer.msnotification.mapper.EmailMessageMapper;
 import com.troojer.msnotification.model.EmailMessageDto;
-import com.troojer.msnotification.model.SendingStatus;
+import com.troojer.msnotification.model.enm.SendingStatus;
 import com.troojer.msnotification.service.EmailMessageService;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import static com.troojer.msnotification.model.SendingStatus.IN_PROCESS;
+import static com.troojer.msnotification.model.enm.SendingStatus.IN_PROCESS;
 
 @Service
 public class EmailMessageServiceImpl implements EmailMessageService {

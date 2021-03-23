@@ -1,30 +1,25 @@
 package com.troojer.msnotification.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.troojer.msnotification.constraints.DateParameters;
+import com.troojer.msnotification.model.enm.NotificationStatus;
+import com.troojer.msnotification.model.enm.NotificationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
-import static com.troojer.msnotification.model.SendingStatus.PENDING;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class InnerNotificationDto {
+public class NotificationDto {
 
     @JsonProperty(access = READ_ONLY)
     private Long id;
@@ -38,15 +33,12 @@ public class InnerNotificationDto {
     private Map<String, String> params;
 
     @Pattern(regexp = "INFO|EVENT_CHANGE|EVENT_RECOMMEND")
-    private InnerNotificationType type;
+    private NotificationType type;
 
     @NotBlank
     private String userId;
 
-    @DateParameters(param = "sendingDate")
-    private String sendingDate;
-
     @JsonProperty(access = READ_ONLY)
-    private InnerNotificationStatus status;
+    private NotificationStatus status;
 
 }

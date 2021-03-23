@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: CreateInnerNotificationTable
+      id: CreateNotificationTable
       author: emilr
       changes:
         - createTable:
-            tableName: inner_notification
+            tableName: notification
             columns:
               - column:
                   name: id

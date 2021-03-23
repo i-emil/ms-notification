@@ -24,7 +24,6 @@ public class SmsDto {
     @NotBlank
     private String phoneNumber;
 
-    @JsonProperty(access = READ_ONLY)
     private String region;
 
     @NotNull

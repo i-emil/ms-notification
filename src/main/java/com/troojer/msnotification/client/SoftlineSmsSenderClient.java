@@ -1,7 +1,7 @@
 package com.troojer.msnotification.client;
 
 import ch.qos.logback.classic.Logger;
-import com.troojer.msnotification.model.SendingStatus;
+import com.troojer.msnotification.model.enm.SendingStatus;
 import com.troojer.msnotification.model.SmsDto;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.util.Pair;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.troojer.msnotification.model.SendingStatus.*;
+import static com.troojer.msnotification.model.enm.SendingStatus.*;
 
 @Component
 public class SoftlineSmsSenderClient {

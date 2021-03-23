@@ -1,18 +1,18 @@
 databaseChangeLog:
   - changeSet:
-      id: CreateInnerNotificationMapTable
+      id: CreateNotificationMapTable
       author: emilr
       changes:
         - createTable:
-            tableName: inner_notification_map
+            tableName: notification_map
             columns:
               - column:
-                  name: inner_notification_id
+                  name: notification_id
                   type: BIGINT
                   constraints:
-                    foreignKeyName: fk_inner_notification_id
+                    foreignKeyName: fk_notification_id
                     nullable: false
-                    references: inner_notification(id)
+                    references: notification(id)
               - column:
                   name: key
                   type: varchar(255)

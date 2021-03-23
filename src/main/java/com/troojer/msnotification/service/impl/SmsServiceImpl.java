@@ -5,7 +5,7 @@ import com.troojer.msnotification.client.SoftlineSmsSenderClient;
 import com.troojer.msnotification.dao.SmsEntity;
 import com.troojer.msnotification.dao.respository.SmsRepository;
 import com.troojer.msnotification.mapper.SmsMapper;
-import com.troojer.msnotification.model.SendingStatus;
+import com.troojer.msnotification.model.enm.SendingStatus;
 import com.troojer.msnotification.model.SmsDto;
 import com.troojer.msnotification.service.SmsService;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import static com.troojer.msnotification.model.SendingStatus.IN_PROCESS;
+import static com.troojer.msnotification.model.enm.SendingStatus.IN_PROCESS;
 
 @Service
 public class SmsServiceImpl implements SmsService {
@@ -35,6 +35,7 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public void addAndSendMessage(SmsDto message) {
         var e = smsMapper.dtoToEntity(message);
+        //todo
 //        e.setStatus(softlineSmsSenderClient.sendSms(message).getSecond());
         smsRepository.save(e);
     }

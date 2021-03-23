@@ -1,34 +1,34 @@
 package com.troojer.msnotification.dao;
 
-import com.troojer.msnotification.model.InnerNotificationStatus;
-import com.troojer.msnotification.model.InnerNotificationType;
-import com.troojer.msnotification.model.SendingStatus;
+import com.troojer.msnotification.model.enm.NotificationStatus;
+import com.troojer.msnotification.model.enm.NotificationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import static com.troojer.msnotification.model.InnerNotificationStatus.NEW;
-import static com.troojer.msnotification.model.SendingStatus.PENDING;
+import static com.troojer.msnotification.model.enm.NotificationStatus.OK;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity
-@Table(name = "inner_notification")
+@Table(name = "notification")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class InnerNotificationEntity {
+@Where(clause = "status = 'OK'")
+public class NotificationEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_generator")
-    @SequenceGenerator(name = "seq_generator", sequenceName = "inner_notification_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_notification_generator")
+    @SequenceGenerator(name = "seq_notification_generator", sequenceName = "notification_seq")
     private Long id;
 
     private String title;
@@ -36,11 +36,11 @@ public class InnerNotificationEntity {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private InnerNotificationType type;
+    private NotificationType type;
 
     @ElementCollection(fetch = EAGER)
-    @CollectionTable(name = "inner_notification_map",
-            joinColumns = {@JoinColumn(name = "inner_notification_id", referencedColumnName = "id")})
+    @CollectionTable(name = "notification_map",
+            joinColumns = {@JoinColumn(name = "notification_id", referencedColumnName = "id")})
     @MapKeyColumn(name = "key")
     @Column(name = "value")
     private Map<String, String> params;
@@ -53,7 +53,7 @@ public class InnerNotificationEntity {
 
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private InnerNotificationStatus status = NEW;
+    private NotificationStatus status = OK;
 
     @CreationTimestamp
     @Column(name = "created_at")

@@ -19,7 +19,7 @@ public class SmsMapper {
         return SmsEntity.builder()
                 .userId(dto.getUserId())
                 .phoneNumber(dto.getPhoneNumber())
-                .region("az")
+                .region(dto.getRegion())
                 .messageText(dto.getMessageText())
                 .sendingDate((dto.getSendingDate() != null) ? LocalDateTime.parse(dto.getSendingDate(), formatter) : null)
                 .build();

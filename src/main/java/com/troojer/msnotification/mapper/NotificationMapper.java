@@ -1,33 +1,31 @@
 package com.troojer.msnotification.mapper;
 
-import com.troojer.msnotification.dao.InnerNotificationEntity;
-import com.troojer.msnotification.model.InnerNotificationDto;
+import com.troojer.msnotification.dao.NotificationEntity;
+import com.troojer.msnotification.model.NotificationDto;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class InnerNotificationMapper {
+public class NotificationMapper {
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public InnerNotificationEntity dtoToEntity(InnerNotificationDto dto) {
-        return InnerNotificationEntity.builder()
+    public NotificationEntity dtoToEntity(NotificationDto dto) {
+        return NotificationEntity.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())
                 .type(dto.getType())
                 .userId(dto.getUserId())
                 .params(dto.getParams())
-                .sendingDate((dto.getSendingDate() != null) ? LocalDateTime.parse(dto.getSendingDate(), formatter) : null)
                 .build();
     }
 
-    public InnerNotificationDto entityToDto(InnerNotificationEntity entity) {
-        return InnerNotificationDto.builder()
+    public NotificationDto entityToDto(NotificationEntity entity) {
+        return NotificationDto.builder()
                 .id(entity.getId())
                 .status(entity.getStatus())
                 .title(entity.getTitle())
@@ -35,11 +33,10 @@ public class InnerNotificationMapper {
                 .type(entity.getType())
                 .userId(entity.getUserId())
                 .params(entity.getParams())
-                .sendingDate((entity.getSendingDate() != null) ? entity.getSendingDate().format(formatter) : null)
                 .build();
     }
 
-    public List<InnerNotificationDto> entitiesToDtos(Collection<InnerNotificationEntity> entities) {
+    public List<NotificationDto> entitiesToDtos(Collection<NotificationEntity> entities) {
         return entities.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 }
