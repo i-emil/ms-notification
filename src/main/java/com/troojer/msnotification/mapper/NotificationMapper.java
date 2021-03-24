@@ -14,12 +14,12 @@ public class NotificationMapper {
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public NotificationEntity dtoToEntity(NotificationDto dto) {
+    public NotificationEntity dtoToEntity(NotificationDto dto, String userId) {
         return NotificationEntity.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())
                 .type(dto.getType())
-                .userId(dto.getUserId())
+                .userId(userId)
                 .params(dto.getParams())
                 .build();
     }

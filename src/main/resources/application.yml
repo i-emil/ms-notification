@@ -20,5 +20,7 @@ server:
 client:
   localization:
     url: http://ms-localization:8080/
+  message:
+    url: http://ms-message:8080/private/messages/
 logging:
   my-level: INFO

@@ -1,10 +1,13 @@
 package com.troojer.msnotification.service.impl;
 
 import ch.qos.logback.classic.Logger;
+import com.troojer.msnotification.client.MessageClient;
 import com.troojer.msnotification.dao.NotificationEntity;
 import com.troojer.msnotification.dao.respository.InnerNotificationRepository;
 import com.troojer.msnotification.mapper.NotificationMapper;
+import com.troojer.msnotification.model.MessageDto;
 import com.troojer.msnotification.model.NotificationDto;
+import com.troojer.msnotification.model.enm.MessageType;
 import com.troojer.msnotification.service.NotificationService;
 import com.troojer.msnotification.util.AccessCheckerUtil;
 import org.slf4j.LoggerFactory;
@@ -21,16 +24,21 @@ public class NotificationServiceImpl implements NotificationService {
     private final InnerNotificationRepository innerNotificationRepository;
     private final NotificationMapper notificationMapper;
     private final AccessCheckerUtil accessChecker;
+    private final MessageClient messageClient;
 
-    public NotificationServiceImpl(InnerNotificationRepository innerNotificationRepository, NotificationMapper notificationMapper, AccessCheckerUtil accessChecker) {
+    public NotificationServiceImpl(InnerNotificationRepository innerNotificationRepository, NotificationMapper notificationMapper, AccessCheckerUtil accessChecker, MessageClient messageClient) {
         this.innerNotificationRepository = innerNotificationRepository;
         this.notificationMapper = notificationMapper;
         this.accessChecker = accessChecker;
+        this.messageClient = messageClient;
     }
 
     @Override
     public void addNotification(NotificationDto dto) {
-        innerNotificationRepository.save(notificationMapper.dtoToEntity(dto));
+        dto.getRecipientsId().forEach(userId ->
+                innerNotificationRepository.save(notificationMapper.dtoToEntity(dto, userId))
+        );
+        messageClient.addMessage(MessageDto.builder().type(dto.getType()).title(dto.getTitle()).message(dto.getDescription()).usersId(dto.getRecipientsId()).build());
         logger.info("addNotification(); dto: {}", dto);
     }
 

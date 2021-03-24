@@ -16,3 +16,5 @@ spring:
 client:
   localization:
     url: http://localhost:8084/
+  message:
+    url: http://localhost:8092/private/messages/

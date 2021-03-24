@@ -2,7 +2,6 @@ package com.troojer.msnotification.service;
 
 
 import com.troojer.msnotification.model.NotificationDto;
-import com.troojer.msnotification.model.enm.NotificationStatus;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

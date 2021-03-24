@@ -1,7 +1,7 @@
 package com.troojer.msnotification.dao;
 
+import com.troojer.msnotification.model.enm.MessageType;
 import com.troojer.msnotification.model.enm.NotificationStatus;
-import com.troojer.msnotification.model.enm.NotificationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,7 +36,7 @@ public class NotificationEntity {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private NotificationType type;
+    private MessageType type;
 
     @ElementCollection(fetch = EAGER)
     @CollectionTable(name = "notification_map",
