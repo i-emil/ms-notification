@@ -20,7 +20,8 @@ server:
 client:
   localization:
     url: http://ms-localization:8080/
-  message:
-    url: http://ms-message:8080/private/messages/
 logging:
   my-level: INFO
+firebase-push-notification:
+  api-url: https://fcm.googleapis.com/fcm/send
+  server-key: AAAAyRXCMP0:APA91bFBxuSyERQUOJ9XP4m1zRB7PeCzDKYQuRSWSJtNayJqABEqdtpdoCDohLAZw8vc3fBqmgUEvmj695cg8cH01xw8b5D7X9aIReQCrMHdX6sYQdujhZXy7BYKOPti60eWnIi49Ja5

@@ -2,7 +2,7 @@ package com.troojer.msnotification.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.troojer.msnotification.model.enm.MessageType;
+import com.troojer.msnotification.model.enm.NotificationType;
 import com.troojer.msnotification.model.enm.NotificationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +37,7 @@ public class NotificationDto {
     private Map<String, String> params;
 
     @Pattern(regexp = "INFO|EVENT_CHANGE|EVENT_RECOMMEND")
-    private MessageType type;
+    private NotificationType type;
 
     @JsonProperty(access = READ_ONLY)
     private NotificationStatus status;

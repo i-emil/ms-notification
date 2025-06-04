@@ -1,6 +1,6 @@
 package com.troojer.msnotification.model;
 
-import com.troojer.msnotification.model.enm.MessageType;
+import com.troojer.msnotification.model.enm.NotificationType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +16,7 @@ public class MessageDto {
 
     private List<String> usersId;
 
-    private MessageType type;
+    private NotificationType type;
 
     private String title;
 

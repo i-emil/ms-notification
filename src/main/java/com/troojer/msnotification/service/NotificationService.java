@@ -1,14 +1,10 @@
 package com.troojer.msnotification.service;
 
 
-import com.troojer.msnotification.model.NotificationDto;
-import org.springframework.data.domain.Pageable;
-
-import java.util.List;
+import com.troojer.msnotification.model.PushNotificationRequest;
 
 public interface NotificationService {
-    void addNotification(NotificationDto notificationDto);
 
-    List<NotificationDto> getNotifications(Pageable pageable);
+    void pushNotification(PushNotificationRequest pushNotification);
 
 }
